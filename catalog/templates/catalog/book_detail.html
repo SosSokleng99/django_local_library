@@ -1,0 +1,31 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    {% if book %}
+        <h1>Title: {{book.title}}</h1>
+        <strong> Author: {{ book.author }} </strong>
+        <p>{{ book.summary }}</p>
+        
+        {% for copy in book.bookinstance_set.all %}
+            <h3>Book Copies</h3>
+            <hr>
+            <!-- Template Logic to Check Book Status -->
+            {% if copy.status == 'o' %}
+            <p class="text-danger"><strong>Book Status: </strong> On Loan</p>
+            {% elif copy.status == 'a' %}
+            <p class="text-success"><strong>Book Status: </strong>Available</p>
+            {% elif copy.status == 'r' %}
+            <p class="text-warning"><strong>Book Status: </strong>Reserved</p>
+            {% else %}
+            <p><strong>Book Status: </strong>On printing process</p>
+            {% endif %}
+
+            <p><strong>Borrower:</strong> {{ copy.borrower }}</p>
+            <p><strong>Book ID:</strong> {{ copy.id }}</p>
+            <p><strong>Imprint:</strong> {{ copy.imprint }}</p>
+
+            {% empty %}
+            <p>There is Book Copies</p>
+        {% endfor%}
+    {% endif %}
+{% endblock %}

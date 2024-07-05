@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1> Welcome to Library Management System </h1>
+<h4>Here are all Records of Associated Books in LMS system:</h4>
+
+<ul class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Total Number of Books:
+      <span class="badge bg-primary rounded-pill">{{num_books}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Total Number of Book Copies:
+      <span class="badge bg-primary rounded-pill">{{num_copied}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Total Number of Authors:
+      <span class="badge bg-primary rounded-pill">{{num_authors}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        Total Number of Genre:
+      <span class="badge bg-primary rounded-pill">{{num_genre}}</span>
+    </li>
+  </ul>
+
+  <p>Number of Visit: {{ num_visits }}</p>
+{% endblock %}
