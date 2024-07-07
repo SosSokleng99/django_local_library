@@ -12,18 +12,36 @@
 </head>
 <body>
 
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><h1>LMS</h1></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        {% if user.is_authenticated %}
+        <h4>Welcome: {{ user.get_username }}</h4>
+        {% endif %}
+      </div>
+
+      
+    </div>
+  </nav>
+</header>
+
 <div class="container-fluid">
 
 <div class="row">
-  <div class="col-sm-2">
+  <div class="col-sm-2 bg-light">
   {% block sidebar %}
-  <ul class="sidebar-nav">
-    <li><a href="{% url 'index' %}">Home</a></li>
-    <li><a href="{% url 'bookinstances' %}">All book copies</a></li>
-    <li><a href="{% url 'books' %}">All books</a></li>
-    <li><a href="{% url 'authors' %}">All authors</a></li>
-    <li><a href="{% url 'genres' %}">All genres</a></li>
-    <li><a href="{% url 'languages' %}">All languages</a></li>
+  <ul class="sidebar-nav list-group">
+    <li><a  class="list-group-item list-group-item-action" href="{% url 'index' %}"><i class="fa-solid fa-house"></i> Home</a></li>
+    <li><a class="list-group-item list-group-item-action"  href="{% url 'bookinstances' %}"><i class="fa-solid fa-address-book"></i> Book copies</a></li>
+    <li><a class="list-group-item list-group-item-action" href="{% url 'books' %}"> <i class="fa-solid fa-book"></i> All books</a></li>
+    <li><a class="list-group-item list-group-item-action" href="{% url 'authors' %}"><i class="fa-solid fa-user-tie"></i> Authors</a></li>
+    <li><a class="list-group-item list-group-item-action" href="{% url 'genres' %}"><i class="fa-solid fa-bars-staggered"></i> Genres</a></li>
+    <li><a class="list-group-item list-group-item-action" href="{% url 'languages' %}"><i class="fa-solid fa-language"></i> Languages</a></li>
   </ul>
 
   <ul class="sidebar-nav">
@@ -41,7 +59,7 @@
    {% endif %}
   </ul>
 
-   {% if user.is_staff %}
+   {% if perms.catalog.can_mark_returned %}
    <hr>
    <ul class="sidebar-nav">
    <li>Staff</li>
@@ -90,5 +108,11 @@
 </div>
 
 </div>
+
+<!-- Fontawesome -->
+<script src="https://kit.fontawesome.com/5b19ade4fd.js" crossorigin="anonymous"></script>
+
+<!-- Javascript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
